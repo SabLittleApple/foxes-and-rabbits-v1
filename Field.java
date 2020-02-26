@@ -64,6 +64,7 @@ public class Field
      */
     public void place(Object animal, int row, int col)
     {
+
         place(animal, new Location(row, col));
     }
     

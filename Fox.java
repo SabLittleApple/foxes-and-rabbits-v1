@@ -9,7 +9,7 @@ import java.util.Random;
  * @author David J. Barnes and Michael Kölling
  * @version 2016.02.29
  */
-public class Fox {
+public class Fox extends Animal {
     // Characteristics shared by all foxes (class variables).
 
     // The age at which a fox can start to breed.
@@ -217,4 +217,6 @@ public class Fox {
             field = null;
         }
     }
+
+
 }
