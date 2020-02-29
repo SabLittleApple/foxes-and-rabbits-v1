@@ -11,6 +11,7 @@ import java.util.Random;
  */
 public class Rabbit extends Animal {
 
+    private int age;
     /**
      * Create a new rabbit. A rabbit may be created with age
      * zero (a new born) or with a random age.
@@ -18,9 +19,11 @@ public class Rabbit extends Animal {
      * @param randomAge If true, the rabbit will have a random age.
      * @param field     The field currently occupied.
      * @param location  The location within the field.
+     *
      */
     public Rabbit(boolean randomAge, Field field, Location location) {
-        super(randomAge, field, location);
+        super(field, location);
+        age = 0;
         BREEDING_AGE = 5;
         MAX_AGE = 40;
         BREEDING_PROBABILITY = 0.12;
@@ -69,6 +72,36 @@ public class Rabbit extends Animal {
             Rabbit young = new Rabbit(false, field, loc);
             newRabbits.add(young);
         }
+    }
+    /**
+     * Increase the age. This could result in the fox's death.
+     */
+    private void incrementAge() {
+        age++;
+        if (age > MAX_AGE) {
+            setDead();
+        }
+    }
+
+    /**
+     * A fox can breed if it has reached the breeding age.
+     */
+    private boolean canBreed() {
+        return age >= BREEDING_AGE;
+    }
+
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     *
+     * @return The number of births (may be zero).
+     */
+    private int breed() {
+        int births = 0;
+        if (canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+        }
+        return births;
     }
 }
 

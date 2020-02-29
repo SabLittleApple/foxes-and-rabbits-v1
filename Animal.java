@@ -13,8 +13,7 @@ public class Animal {
     // The maximum number of births.
     protected int MAX_LITTER_SIZE;
 
-    // The animal's age.
-    protected int age;
+
     // Whether the animal is alive or not.
     protected boolean alive;
     // The animal's position.
@@ -28,12 +27,12 @@ public class Animal {
     /**
      * Create an animal.
      *
-     * @param randomAge If true, the animal will have random age.
+    // * @param randomAge If true, the animal will have random age.
      * @param field     The field currently occupied.
      * @param location  The location within the field.
      *                  */
-    public Animal(boolean randomAge, Field field, Location location){
-        age = 0;
+    public Animal(Field field, Location location){
+
         alive = true;
         this.field = field;
         setLocation(location);
@@ -74,36 +73,11 @@ public class Animal {
 
 
 
-    /**
-     * Increase the age. This could result in the fox's death.
-     */
-    protected void incrementAge() {
-        age++;
-        if (age > MAX_AGE) {
-            setDead();
-        }
-    }
 
-    /**
-     * Generate a number representing the number of births,
-     * if it can breed.
-     *
-     * @return The number of births (may be zero).
-     */
-    protected int breed() {
-        int births = 0;
-        if (canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
-            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
-        }
-        return births;
-    }
 
-    /**
-     * A fox can breed if it has reached the breeding age.
-     */
-    protected boolean canBreed() {
-        return age >= BREEDING_AGE;
-    }
+
+
+
 
     /**
      * Indicate that the fox is no longer alive.

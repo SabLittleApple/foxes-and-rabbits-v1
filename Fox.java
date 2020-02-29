@@ -18,18 +18,12 @@ public class Fox extends Animal {
     // A shared random number generator to control breeding.
 
     private int foodLevel;
+    // The animal's age.
+    private int age;
 
-    /**
-     * Create a fox. A fox can be created as a new born (age zero
-     * and not hungry) or with a random age and food level.
-     *
-     * @param randomAge If true, the fox will have random age and hunger level.
-     * @param field     The field currently occupied.
-     * @param location  The location within the field.
-     */
-    public Fox(boolean randomAge, Field field, Location location) {
-        super(randomAge, field, location);
-
+public Fox(boolean randomAge, Field field, Location location) {
+        super(field, location);
+        age = 0;
         BREEDING_AGE = 15;
         MAX_AGE = 150;
         BREEDING_PROBABILITY = 0.08;
@@ -128,6 +122,34 @@ public class Fox extends Animal {
         }
     }
 
+    /**
+     * Increase the age. This could result in the fox's death.
+     */
+    private void incrementAge() {
+        age++;
+        if (age > MAX_AGE) {
+            setDead();
+        }
+    }
 
+    /**
+     * A fox can breed if it has reached the breeding age.
+     */
+    private boolean canBreed() {
+        return age >= BREEDING_AGE;
+    }
 
+    /**
+     * Generate a number representing the number of births,
+     * if it can breed.
+     *
+     * @return The number of births (may be zero).
+     */
+    private int breed() {
+        int births = 0;
+        if (canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+            births = rand.nextInt(MAX_LITTER_SIZE) + 1;
+        }
+        return births;
+    }
 }
