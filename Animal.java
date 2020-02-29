@@ -58,6 +58,7 @@ public class Animal {
      * @return True if the fox is still alive.
      */
     protected boolean isAlive() {
+
         return alive;
     }
 
@@ -67,6 +68,7 @@ public class Animal {
      * @return The fox's location.
      */
     protected Location getLocation() {
+
         return location;
     }
 
@@ -117,13 +119,13 @@ public class Animal {
     }
 
 //    /**
-//     * Check whether or not this fox is to give birth at this step.
+//     * Check whether or not this animal is to give birth at this step.
 //     * New births will be made into free adjacent locations.
 //     *
-//     * @param newAnimals A list to return newly born foxes.
+//     * @param newAnimals A list to return newly born animals.
 //     */
 //    protected void giveBirth(List<Animal> newAnimals) {
-//        // New foxes are born into adjacent locations.
+//        // New animals are born into adjacent locations.
 //        // Get a list of adjacent free locations.
 //        List<Location> free = field.getFreeAdjacentLocations(location);
 //        int births = breed();

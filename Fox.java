@@ -74,6 +74,7 @@ public class Fox extends Animal {
     }
 
 
+
     /**
      * Make this fox more hungry. This could result in the fox's death.
      */
