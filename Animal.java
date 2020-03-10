@@ -1,7 +1,8 @@
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class Animal {
+public abstract class Animal {
 
     // Characteristics shared by all animals.
     // The age at which an animal can start to breed.
@@ -26,12 +27,13 @@ public class Animal {
 
     /**
      * Create an animal.
+     * <p>
+     * // * @param randomAge If true, the animal will have random age.
      *
-    // * @param randomAge If true, the animal will have random age.
-     * @param field     The field currently occupied.
-     * @param location  The location within the field.
-     *                  */
-    public Animal(Field field, Location location){
+     * @param field    The field currently occupied.
+     * @param location The location within the field.
+     */
+    public Animal(Field field, Location location) {
 
         alive = true;
         this.field = field;
@@ -72,13 +74,6 @@ public class Animal {
     }
 
 
-
-
-
-
-
-
-
     /**
      * Indicate that the fox is no longer alive.
      * It is removed from the field.
@@ -92,21 +87,6 @@ public class Animal {
         }
     }
 
-//    /**
-//     * Check whether or not this animal is to give birth at this step.
-//     * New births will be made into free adjacent locations.
-//     *
-//     * @param newAnimals A list to return newly born animals.
-//     */
-//    protected void giveBirth(List<Animal> newAnimals) {
-//        // New animals are born into adjacent locations.
-//        // Get a list of adjacent free locations.
-//        List<Location> free = field.getFreeAdjacentLocations(location);
-//        int births = breed();
-//        for (int b = 0; b < births && free.size() > 0; b++) {
-//            Location loc = free.remove(0);
-//            Animal young = new Animal(false, field, loc);
-//            newAnimals.add(young);
-//        }
-//    }
+    // Let all animals act.
+abstract public void act (List <Animal> newAnimals);
 }

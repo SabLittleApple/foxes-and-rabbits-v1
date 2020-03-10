@@ -193,6 +193,7 @@ public class Field
      */
     public int getDepth()
     {
+
         return depth;
     }
     
@@ -202,6 +203,7 @@ public class Field
      */
     public int getWidth()
     {
+
         return width;
     }
 }

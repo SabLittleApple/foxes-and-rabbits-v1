@@ -38,12 +38,12 @@ public class Rabbit extends Animal {
      * This is what the rabbit does most of the time - it runs
      * around. Sometimes it will breed or die of old age.
      *
-     * @param newRabbits A list to return newly born rabbits.
+     * @param newAnimals A list to return newly born rabbits.
      */
-    public void run(List<Rabbit> newRabbits) {
+    public void act(List<Animal> newAnimals) {
         incrementAge();
         if (alive) {
-            giveBirth(newRabbits);
+            giveBirth(newAnimals);
             // Try to move into a free location.
             Location newLocation = field.freeAdjacentLocation(location);
             if (newLocation != null) {
@@ -60,9 +60,9 @@ public class Rabbit extends Animal {
      * Check whether or not this rabbit is to give birth at this step.
      * New births will be made into free adjacent locations.
      *
-     * @param newRabbits A list to return newly born rabbits.
+     * @param newAnimals A list to return newly born rabbits.
      */
-    private void giveBirth(List<Rabbit> newRabbits) {
+    private void giveBirth(List<Animal> newAnimals) {
         // New rabbits are born into adjacent locations.
         // Get a list of adjacent free locations.
         List<Location> free = field.getFreeAdjacentLocations(location);
@@ -70,7 +70,7 @@ public class Rabbit extends Animal {
         for (int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
             Rabbit young = new Rabbit(false, field, loc);
-            newRabbits.add(young);
+            newAnimals.add(young);
         }
     }
     /**

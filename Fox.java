@@ -44,13 +44,13 @@ public Fox(boolean randomAge, Field field, Location location) {
      * or die of old age.
      *
      * //@param field    The field currently occupied.
-     * @param newFoxes A list to return newly born foxes.
+     * @param newAnimals A list to return newly born foxes.
      */
-    public void hunt(List<Fox> newFoxes) {
+    public void act(List<Animal> newAnimals) {
         incrementAge();
         incrementHunger();
         if (alive) {
-            giveBirth(newFoxes);
+            giveBirth(newAnimals);
             // Move towards a source of food if found.
             Location newLocation = findFood();
             if (newLocation == null) {
@@ -108,9 +108,9 @@ public Fox(boolean randomAge, Field field, Location location) {
      * Check whether or not this fox is to give birth at this step.
      * New births will be made into free adjacent locations.
      *
-     * @param newFoxes A list to return newly born foxes.
+     * @param newAnimals A list to return newly born foxes.
      */
-    private void giveBirth(List<Fox> newFoxes) {
+    private void giveBirth(List<Animal> newAnimals) {
         // New foxes are born into adjacent locations.
         // Get a list of adjacent free locations.
         List<Location> free = field.getFreeAdjacentLocations(location);
@@ -118,7 +118,7 @@ public Fox(boolean randomAge, Field field, Location location) {
         for (int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
             Fox young = new Fox(false, field, loc);
-            newFoxes.add(young);
+            newAnimals.add(young);
         }
     }
 
